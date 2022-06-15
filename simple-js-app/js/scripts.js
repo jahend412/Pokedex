@@ -7,17 +7,42 @@ let pokemonRepository = (function () {  //  Entered the IIFE function and now th
     {name: 'Pikachu', height: 0.4, weight: 6, types: 'Electric'},
     {name: 'Mewtwo', height: 2.0, weight: 122, types: 'Psychic'}
   ];
-function add(pokemon) {
-  pokemonList.push(pokemon);
+
+function add(pokemon) {   //Entered add function that declares typeof pokemon
+    pokemonList.push(pokemon);
 }
 
-function getAll() {    //Added getAll function
-  return pokemonList;
+function getAll() {    //Added getAll function to get all pokemon
+  return pokemonList;  //Return function takes the pokemon from the array
 }
+
+function addListItem(pokemon) {  // Function addListItem is used for DOM
+  let pokemonList = document.querySelector(".pokemon-list");  //.pokemon-list is ul in index
+  let listpokemon = document.createElement("li");   // Creating listpokemon as a list
+  let button = document.createElement("button");  // creating a button
+  button.innerText = pokemon.name;   // creating text to be pokemon names for button
+  button.classList.add("button-class");  // Having the button take on style from css
+  listpokemon.appendchild(button);  // calling the listpokemon to the button
+  pokemonList.appendChild(listpokemon);  // calling the pokemonList to the list
+  eventListener(button, pokemon);  //  added eventListener with two parameters
+}
+
+function showDetails(pokemon) {  //Function for the event listener.
+  console.log(pokemon);
+}
+
+function eventListener (button, pokemon) {  //eventListener has two parameters
+  button.addEventListener('click', function (){  //the function uses the event listner by click and calls showDetails
+    showDetails(pokemon);
+  });
+}
+
+
 
 return {
-  add: add,
-  getAll: getAll    //Calling getAll function
+  add: add,         //Calling add function
+  getAll: getAll,    //Calling getAll function
+  addListItem: addListItem  //Calling addListItem function
 };
 })();
 
@@ -27,13 +52,9 @@ pokemonRepository.add({ name: 'Onix', height: 8.8, weight: 210, types: 'Rock', '
 
 console.log(pokemonRepository.getAll());
 
-pokemonList.forEach(function(pokemon) {  // Added forEach loop
-  document.write(pokemon.name, '(height: ' + pokemon.height +')');
-    if(pokemonList[i].height > 1.7) {
-    document.write("  This pokemon is tall.  Wow, that\'s big!" + "<br>");
-    }else if(pokemonList[i].height > 1.0  && pokemonList[i].height < 1.7) {
-    document.write("  This pokemon has an average height!" + "<br>");
-    }else {
-    document.write("  This pokemon is short!" + "<br>");
-  }
-});
+pokemonRepository.getAll().forEach(function(pokemon) {
+  pokemonRepository.addListItem(pokemon);
+
+}
+
+)

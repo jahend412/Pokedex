@@ -8,6 +8,22 @@ let pokemonRepository = (function () {  //  Entered the IIFE function and now th
     {name: 'Mewtwo', height: 2.0, weight: 122, types: ['Psychic']}
   ];
 
+  function loadList() {
+     return fetch(apiUrl).then(function (response) {
+       return response.json();
+     }).then(function (json) {
+       json.results.forEach(function (item) {
+         let pokemon = {
+           name: item.name,
+           detailsUrl: item.url
+         };
+         add(pokemon);
+       });
+     }).catch(function (e) {
+       console.error(e);
+     })
+   }
+
 function add(pokemon) {   //Entered add function that declares typeof pokemon
     pokemonList.push(pokemon);
 }

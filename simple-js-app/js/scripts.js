@@ -1,7 +1,7 @@
 
 let pokemonRepository = (function () {  //  Entered the IIFE function and now the pokemonList is "protected"
   let pokemonList = [];
-  let apiURL = 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=150';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=150';
 
   function add(pokemon) {   //Entered add function that declares typeof pokemon
     if (
@@ -25,8 +25,8 @@ let pokemonRepository = (function () {  //  Entered the IIFE function and now th
     let button = document.createElement("button");  // creating a button
     button.innerText = pokemon.name;   // creating text to be pokemon names for button
     button.classList.add("button-class");  // Having the button take on style from css
-    listPokemon.appendchild(button);  // calling the listpokemon to the button
-    pokemonList.appendChild(listpokemon);  // calling the pokemonList to the list
+    listPokemon.appendChild(button);  // calling the listpokemon to the button
+    pokemonList.appendChild(listPokemon);  // calling the pokemonList to the list
     eventListener(button, pokemon);  //  added eventListener with two parameters
     button.addEventListener("click", function(event) {
       showDetails(pokemon);
@@ -90,7 +90,7 @@ console.log(pokemonRepository.getAll());
 console.log(pokemonRepository.getAll());
 
 pokemonRepository.loadList().then(function() {
-  pokemonRepository.getAll().forEach(function(pokemon) {
+  pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
 });

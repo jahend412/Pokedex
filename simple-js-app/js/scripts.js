@@ -1,7 +1,7 @@
 
 let pokemonRepository = (function () {  //  Entered the IIFE function and now the pokemonList is "protected"
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=150';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150';
 
   function add(pokemon) {   //Entered add function that declares typeof pokemon
     if (
@@ -94,3 +94,57 @@ pokemonRepository.loadList().then(function() {
     pokemonRepository.addListItem(pokemon);
   });
 });
+
+function validateEmail() {
+let value = emailInput.value;
+let hasAtSign = value.indexOf('@') > -1;
+let hasDot = value.indexOf('.') > -1;
+return value && hasAtSign && hasDot;
+}
+//ValidateEmail function
+
+function validatePassword() {
+  let value = passwordInput.value;
+  return value && value.length >= 8;
+  if (!value) {
+    showErrorMessage(passwordInput, 'Password is a required field');
+    return false;
+  }
+  if (value.length < 8) {
+    showErrorMessage(passwordInput, 'The password needs to be at least 8 characters long.');
+    return false;
+  }
+  showErrorMessage(passwordInput, null);
+  return true;
+}
+// ValidatePassword Function
+
+function showErrorMessage(input, message) {
+  let container = input.parentElement;  //The .input-wrapper
+
+  // Remove an exsisting error
+  let error = container.querySelector('.error-message');
+  if (error) {
+    container.removeChild(error);
+  }
+
+  // Now add the error if the message is empty
+  if (message) {
+    let error = document.createElement('div');
+    error.classList.add('error-message');
+    error.innerText = message;
+    container.appendChild(error);
+  }
+}
+function validateForm() {
+  return validateEmail() && validatePassword();  //
+}
+
+//function validateForm() {
+//let isValidEmail = validateEmail();
+//let isValidPassword = validatePassword();
+//return isValidEmail && isValidPassword;       Show all errors at once when submitting form
+//}
+
+emailInput.addEventListener('imput', validateEmail);
+passwordInput.addEventListener('input', validatePassword);

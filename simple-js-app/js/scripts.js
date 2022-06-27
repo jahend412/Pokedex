@@ -2,6 +2,7 @@
 let pokemonRepository = (function () {  //  Entered the IIFE function and now the pokemonList is "protected"
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150';
+  let modalContainer = document.querySelector('#modal-container');
 
   function add(pokemon) {   //Entered add function that declares typeof pokemon
     if (
@@ -83,9 +84,6 @@ let pokemonRepository = (function () {  //  Entered the IIFE function and now th
     loadDetails: loadDetails,
     showDetails: showDetails
   };
-})();
-
-console.log(pokemonRepository.getAll());
 
 console.log(pokemonRepository.getAll());
 
@@ -95,56 +93,67 @@ pokemonRepository.loadList().then(function() {
   });
 });
 
-function validateEmail() {
-let value = emailInput.value;
-let hasAtSign = value.indexOf('@') > -1;
-let hasDot = value.indexOf('.') > -1;
-return value && hasAtSign && hasDot;
-}
-//ValidateEmail function
 
-function validatePassword() {
-  let value = passwordInput.value;
-  return value && value.length >= 8;
-  if (!value) {
-    showErrorMessage(passwordInput, 'Password is a required field');
-    return false;
-  }
-  if (value.length < 8) {
-    showErrorMessage(passwordInput, 'The password needs to be at least 8 characters long.');
-    return false;
-  }
-  showErrorMessage(passwordInput, null);
-  return true;
-}
-// ValidatePassword Function
 
-function showErrorMessage(input, message) {
-  let container = input.parentElement;  //The .input-wrapper
+//        <!---------------------------  Modal -------------------------------->
 
-  // Remove an exsisting error
-  let error = container.querySelector('.error-message');
-  if (error) {
-    container.removeChild(error);
+  function showModal() {
+    modalContainer.classList.add('is-visible');
   }
 
-  // Now add the error if the message is empty
-  if (message) {
-    let error = document.createElement('div');
-    error.classList.add('error-message');
-    error.innerText = message;
-    container.appendChild(error);
+  document.querySelector('show-modal').addEventListener('click', () => {
+    showModal();
+  });
+
+  function showModal(title, text) {
+    modalContainer.innerHTML = '';  //Clear all existing modal content
+
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'Close';
+    closeButtonElement.addEventListener('click', hideModal);
+
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = title;
+
+    let contentElement = document.createElement('p');
+    contentElement.innerText = text;
+
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(titleElement);
+    modal.appendChild(contentElement);
+    modalContainer.appendChild(modal);
+
+    modalContainer.classList.add('is-visible');
+
+
+
   }
-}
-function validateForm() {
-  return validateEmail() && validatePassword();  //
-}
 
-//function validateForm() {
-//let isValidEmail = validateEmail();
-//let isValidPassword = validatePassword();
-//return isValidEmail && isValidPassword;       Show all errors at once when submitting form
-//}
+  //A way to close the Modal function
+  function hideModal() {
+    modalContainer.classList.remove('is-visible');
+  }
 
-emailInput.addEventListener('imput', validateEmail);
-passwordInput.addEventListener('input', validatePassword);
+  //  Event listener for Modal
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+  });
+
+  modalContainer.addEventListener('click', (e) => {
+    let target = e.target;
+    if (target === modalContainer) {
+      hideModal();
+    }
+  });
+
+  document.querySelector('#show-modal').addEventListener('click', () => {
+    showModal('Modal title', 'This is the modal content!');
+  });
+
+})();

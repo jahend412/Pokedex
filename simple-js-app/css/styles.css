@@ -13,3 +13,12 @@
   color: black;
   border: 2px solid green;
 }
+
+css
+#modal-container {
+  display: none;
+}
+
+#modal-container.is-visible {
+  display: block;
+}

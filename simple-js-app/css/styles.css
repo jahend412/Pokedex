@@ -14,6 +14,34 @@
 }
 
 css
+
+.header {
+  margin-bottom: 2px;
+}
+
+.header-title {
+  background-color: #0000ff;
+  color: #F5FFFA;
+  text-align: center;
+  font-size: 50px;
+  width: 100%
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  line-height: 30px
+}
+
+body {
+font-family: 'Roboto', sans-serif;
+  background-color: #191970;
+  text-align: center;
+}
+
+.pokemon-container {
+  text-align:
+  padding: 0 2px;
+}
+
 #modal-container {
 display: none;
 }

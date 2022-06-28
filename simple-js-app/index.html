@@ -6,20 +6,19 @@
   <title>Pokedex</title>
   <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
   <link rel="stylesheet" href="css/styles.css" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Macondo&family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-<button id="show-modal">Show Modal</button>
-  <div id="modal-container">
-    <!--<div class="modal">
-      <button class="modal-close">Close</button>
-        <h1>Modal title</h1>
-        <p>Modal Text</p>
-    </div>
-  -->
-  </div>
-  <div id="image-container"></div>
-  <h1>Pokedex</h1>
+<header>
+    <h1 class="header-title">Pokedex</h1>
+</header>
+<main>
+<div class="pokemon-container">
   <ul class="pokemon-list"></ul>
+</div>
+  <div id="modal-container"></div>
+
+  </main>
   <script src="js/scripts.js"></script>
   <script src="js/fetch.umd.js"></script>
   <script src="js/promise-pollyfill.js"></script>

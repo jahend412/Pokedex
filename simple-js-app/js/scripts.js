@@ -57,14 +57,7 @@ let pokemonRepository = (function () {  //  Entered the IIFE function and now th
     })
   }
 
-  function showDetails(item) {
-   pokemonRepository.loadDetails(item).then(function () {
-       // console.log(item);
-       showModal(item);
-   });
-}
-
-  function loadDetails(item) {
+function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url). then(function (response) {
       return response.json();
@@ -77,6 +70,12 @@ let pokemonRepository = (function () {  //  Entered the IIFE function and now th
     });
   }
 
+    function showDetails(item) {
+     pokemonRepository.loadDetails(item).then(function () {
+         // console.log(item);
+         showModal(item);
+     });
+  }
 
 
 //        <!---------------------------  Modal -------------------------------->

@@ -34,12 +34,6 @@ let pokemonRepository = (function () {  //  Entered the IIFE function and now th
     });
   }
 
-  function eventListener (button, pokemon) {  //eventListener has two parameters
-    button.addEventListener('click', function (){  //the function uses the event listner by click and calls showDetails
-      showDetails(pokemon);
-    });
-  }
-
   function loadList() {
     return fetch(apiUrl).then(function (response) {
       return response.json();
@@ -99,9 +93,9 @@ function loadDetails(item) {
       let contentElement = document.createElement('p');
       contentElement.innerText = "Height: " +pokemon.height;
 
-      // Add image
+      // Add image,  So far this isnt adding an image and needs to be fixed!
       let pokemonImage = document.createElement("img");
-      let container = document.querySelector('#pokemon-image');
+      pokemonImage.classList.add('pokemon-image');
       pokemonImage.src = pokemon.imageUrl;
 
 

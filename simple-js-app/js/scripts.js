@@ -4,7 +4,24 @@ let pokemonRepository = (function () {  //  Entered the IIFE function and now th
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150';
   let modalContainer = document.querySelector('#modal-container');
 
+// Search Function
+  const search = document.getElementById('pokemon-search');
+    search.addEventListener('input', searchList);
 
+    function searchList() {
+      let searchInput = document.getElementById('pokemon-search').value;
+      searchInput = searchInput.toLowerCase();
+      const listItem = $('li');
+      listItem.each(function () {
+        const item = $(this);
+        const name = item.text();
+        if (name.includes(searchInput)) {
+          item.show();
+        } else {
+          item.hide();
+        }
+      });
+    }
 
   function add(pokemon) {   //Entered add function that declares typeof pokemon
     if (
@@ -117,7 +134,8 @@ function loadList() {
     addListItem: addListItem,  //Calling addListItem function
     loadList: loadList,
     showDetails: showDetails,
-    loadDetails: loadDetails
+    loadDetails: loadDetails,
+    search:  search
 
   };
 })();

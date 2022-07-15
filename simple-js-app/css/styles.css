@@ -11,10 +11,10 @@
   cursor: pointer;
   color: black;
   border: 2px solid #0000ff;
+
 }
 
 css
-
 
 
 .header-title {
@@ -47,7 +47,7 @@ padding: 0;
 
 .pokemon-container {
   text-align: center;
-  padding: 0 2px;
+  padding: 0 100px;
 }
 
 .pokemon-modal {
@@ -57,7 +57,7 @@ padding: 0;
   background:  #ffd700;
   padding: 20px;
   width: 100%;
-  max-width: 480px;
+  max-width: 100px;
   text-align: center;
   touch-action: 'none';
 }

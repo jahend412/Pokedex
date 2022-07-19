@@ -2,7 +2,7 @@
 let pokemonRepository = (function () {  //  Entered the IIFE function and now the pokemonList is "protected"
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150';
-  let modalContainer = document.querySelector('#modal-container');
+/* eslint-env jquery */
 
 // Search Function
   const search = document.getElementById('pokemon-search');
@@ -25,13 +25,13 @@ let pokemonRepository = (function () {  //  Entered the IIFE function and now th
 
   function add(pokemon) {   //Entered add function that declares typeof pokemon
     if (
-      typeof pokemon === "object" &&
-      "name" in pokemon &&
-      "detailsUrl" in pokemon
+      typeof pokemon === 'object' &&
+      'name' in pokemon &&
+      'detailsUrl' in pokemon
     ) {
       pokemonList.push(pokemon);
     } else {
-      console.log("Pokemon is not correct");
+      console.log('Pokemon is not correct');
     }
   }
 
@@ -40,19 +40,19 @@ let pokemonRepository = (function () {  //  Entered the IIFE function and now th
   }
 
   function addListItem(pokemon) {  // Function addListItem is used for DOM
-    let pokemonList = document.querySelector(".pokemon-list");  //.pokemon-list is ul in index
-    let pokemonItem = document.createElement("li");
-    pokemonList.classList.add("group-list-item");
-    pokemonList.classList.add("col-sm-4", "col-md-6", "col-lg-12");
-    let buttonItem = document.createElement("button");  // creating a button
-    buttonItem.classList.add("pokemonButton");
+    let pokemonList = document.querySelector('.pokemon-list');  //.pokemon-list is ul in index
+    let pokemonItem = document.createElement('li');
+    pokemonList.classList.add('group-list-item');
+    pokemonList.classList.add('col-sm-4', 'col-md-6', 'col-lg-12');
+    let buttonItem = document.createElement('button');  // creating a button
+    buttonItem.classList.add('pokemonButton');
     buttonItem.innerText = pokemon.name;
-    buttonItem.setAttribute("data-toggle", "modal");
-    buttonItem.setAttribute("data-target", "#pokemon-modal");
+    buttonItem.setAttribute('data-toggle', 'modal');
+    buttonItem.setAttribute('data-target', '#pokemon-modal');
     $(buttonItem).addClass('button-class btn-block btn m1');
     pokemonItem.appendChild(buttonItem);  // calling the listpokemon to the button
     pokemonList.appendChild(pokemonItem);  // calling the pokemonList to the list
-    buttonItem.addEventListener("click", function (event) {
+    buttonItem.addEventListener('click', function () {
        showDetails(pokemon);
 
      });
@@ -99,8 +99,8 @@ function loadList() {
 
 
   function showModal(pokemon) {
-    let modalBody = $(".modal-body");
-    let modalTitle = $(".modal-title");
+    let modalBody = $('.modal-body');
+    let modalTitle = $('.modal-title');
 
 
     modalTitle.empty();
@@ -109,7 +109,7 @@ function loadList() {
     let nameElement = $('<h1>' + pokemon.name + '</h1>');
     // Pokemon image
     let imageElement = $('<img class="pokemon-img">')
-    imageElement.attr("src", pokemon.imageUrl);
+    imageElement.attr('src', pokemon.imageUrl);
     // Height
     let heightElement = $('<p>' + 'Height : ' + pokemon.height + '</p>');
     // Weight

@@ -1,0 +1,19 @@
+{
+    "env": {
+        "es6": true,
+         "commonjs": true,
+        "browser": true,
+        "jquery": true
+    },
+    "extends": [
+        "eslint:recommended"
+    ],
+    "plugins": [
+    "dollar-sign",
+    "jquery"
+  ],
+    "rules": {
+        "quotes": ["error", "single"]
+    },
+  
+}
